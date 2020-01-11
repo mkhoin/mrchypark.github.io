@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="박찬엽">
+<meta name="keywords" content="">
+<meta name="description" content="한줄요약 options(pillar.sigfig=10) tidyverse 생태계는 R의 현재 부흥기를 이끌고 있습니다. magrittr 패키지가 쏘아올린 %&gt;%(파이프 연산자)가 이렇게 될꺼라고 상상이나 했을까요. 해들리 위">
+
+
+<meta property="og:description" content="한줄요약 options(pillar.sigfig=10) tidyverse 생태계는 R의 현재 부흥기를 이끌고 있습니다. magrittr 패키지가 쏘아올린 %&gt;%(파이프 연산자)가 이렇게 될꺼라고 상상이나 했을까요. 해들리 위">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Rtips] tbl 자료형에서 소수점을 출력해보자">
+<meta name="twitter:title" content="[Rtips] tbl 자료형에서 소수점을 출력해보자">
+<meta property="og:url" content="https://mrchypark.github.io/post/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90/">
+<meta property="twitter:url" content="https://mrchypark.github.io/post/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90/">
+<meta property="og:site_name" content="Mrchypark">
+<meta property="og:description" content="한줄요약 options(pillar.sigfig=10) tidyverse 생태계는 R의 현재 부흥기를 이끌고 있습니다. magrittr 패키지가 쏘아올린 %&gt;%(파이프 연산자)가 이렇게 될꺼라고 상상이나 했을까요. 해들리 위">
+<meta name="twitter:description" content="한줄요약 options(pillar.sigfig=10) tidyverse 생태계는 R의 현재 부흥기를 이끌고 있습니다. magrittr 패키지가 쏘아올린 %&gt;%(파이프 연산자)가 이렇게 될꺼라고 상상이나 했을까요. 해들리 위">
+<meta property="og:locale" content="ko-kr">
+
+  
+    <meta property="article:published_time" content="2018-08-22T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-08-22T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R">
+    
+  
+  
+    
+      <meta property="article:tag" content="tbl">
+    
+      <meta property="article:tag" content="tibble">
+    
+      <meta property="article:tag" content="digit">
+    
+      <meta property="article:tag" content="options">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=640">
+
+
+    <title>[Rtips] tbl 자료형에서 소수점을 출력해보자</title>
+
+    <link rel="icon" href="css/images/logo.png">
+    
+
+    
+
+    <link rel="canonical" href="https://mrchypark.github.io/post/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://mrchypark.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://mrchypark.github.io/css/my.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-47822682-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://mrchypark.github.io/">Mrchypark</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://mrchypark.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://mrchypark.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">박찬엽</h4>
+        
+          <h5 class="sidebar-profile-bio">Tool maker with R - Docker lover</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/material">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-clone"></i>
+      
+      <span class="sidebar-button-desc">Materials</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/mrchypark" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.facebook.com/mrchypark" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+      
+      <span class="sidebar-button-desc">Facebook</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/mrchypark_" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/chanyubpark/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      [Rtips] tbl 자료형에서 소수점을 출력해보자
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-08-22T00:00:00Z">
+        
+   22, 2018
+
+      </time>
+    
+    
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://mrchypark.github.io/categories/r">R</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/44436508-90826980-a5f0-11e8-8dde-4b21ef01256c.jpg"></p>
+<div id="한줄요약" class="section level3">
+<h3>한줄요약</h3>
+<ol style="list-style-type: decimal">
+<li><code>options(pillar.sigfig=10)</code></li>
+</ol>
+<p><em>tidyverse</em> 생태계는 R의 현재 부흥기를 이끌고 있습니다.
+<em>magrittr</em> 패키지가 쏘아올린 <code>%&gt;%(파이프 연산자)</code>가 이렇게 될꺼라고 상상이나 했을까요.
+<a href="http://hadley.nz/">해들리 위컴</a>이 발표한 <a href="http://vita.had.co.nz/papers/tidy-data.html">tidy data</a>와 함께 <em>tidyverse</em>에서는 없는게 상상도 할 수 없는 것이 많습니다.</p>
+<p>이런 <em>tidyverse</em>에서 data를 담당하는 패키지가 <a href="https://tibble.tidyverse.org/">tibble</a>입니다.</p>
+<p><img width=100% src="http://www.sthda.com/sthda/RDoc/images/tibble-data-format-tbl_df.png"></p>
+<p><a href="https://tibble.tidyverse.org/">tibble</a>은 <code>tbl</code>, <code>tbl_df</code> 등등의 자료형으로 표현됩니다.
+위에 그림에도 보이는 것처럼 <code>data.frame</code>과 같은 역할을 하면서, 더 세련됬다고 할까요.</p>
+<p>그 와중에 <a href="https://tibble.tidyverse.org/">tibble</a>의 출력을 담당하는 패키지가 <a href="https://github.com/r-lib/pillar">pillar</a>입니다.</p>
+<pre class="r"><code>if(!requireNamespace(&quot;pillar&quot;)){
+    source(&quot;https://install-github.me/r-lib/pillar&quot;)
+}</code></pre>
+<pre><code>## Loading required namespace: pillar</code></pre>
+<pre class="r"><code>library(pillar)
+x &lt;- 123456789 * (10 ^ c(-3, -5, NA, -8, -10))
+x</code></pre>
+<pre><code>## [1] 1.234568e+05 1.234568e+03           NA 1.234568e+00 1.234568e-02</code></pre>
+<pre class="r"><code>pillar(x)</code></pre>
+<pre><code>##       &lt;dbl&gt;
+## 123457.    
+##   1235.    
+##     NA     
+##      1.23  
+##      0.0123</code></pre>
+<p>마크다운에는 디테일이 표현되지 않아 사진을 첨부합니다.
+<img src="https://raw.githubusercontent.com/r-lib/pillar/master/man/figures/colours.png" /></p>
+<p>3자리 마다 쉼표로 표시하는 관행을 출력해주기 위해, <a href="https://github.com/r-lib/pillar">pillar</a> 패키지는 밑줄을 사용합니다.
+보기 참 좋아진거 같습니다!</p>
+<p>그러다 보니… 소수점 표기의 출력 옵션이 기존의 <code>data.frame</code>과 다릅니다.
+찾아보니 <code>options(pillar.sigfig)</code>를 조절하면 된다는군요!</p>
+<pre><code>options(pillar.sigfig)
+## Error in options(pillar.sigfig) : object &#39;pillar.sigfig&#39; not found</code></pre>
+<p>기본 값이 없는거 같습니다….(;;;)
+패키지에는 3이 기본값이라고 하는데 어떻게 보는지 모르겠네요;;;
+이젠 <code>tibble</code>에서 확인해 볼까요?</p>
+<pre class="r"><code>my_numbers &lt;-  c(233, 486, 565, 785)
+tbl_num &lt;- tibble::tibble(
+  big = 1000 * my_numbers + 23,
+  stradle = my_numbers / 1000 + 100,
+  small = my_numbers / 100000
+)
+tbl_num</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##      big stradle   small
+##    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 233023    100. 0.00233
+## 2 486023    100. 0.00486
+## 3 565023    101. 0.00565
+## 4 785023    101. 0.00785</code></pre>
+<p>출력을 보면 stradle 컬럼의 첫번째 데이터가 <code>100.</code>라고 되어 있습니다.
+<code>100</code>이 아니고 <code>100.</code>이라고 출력해주면서 소수점 숫자가 있음을 알려주는데요.
+<a href="https://github.com/r-lib/pillar/issues/40#issuecomment-360152576">관련 이슈</a>도 있으니 읽어보시면 좋을 것 같구요.</p>
+<pre class="r"><code>options(pillar.sigfig = 7)
+tbl_num</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##      big stradle       small
+##    &lt;dbl&gt;   &lt;dbl&gt;       &lt;dbl&gt;
+## 1 233023 100.233 0.00233    
+## 2 486023 100.486 0.00486    
+## 3 565023 100.565 0.00565    
+## 4 785023 100.785 0.007850000</code></pre>
+<p><a href="https://github.com/r-lib/pillar">pillar</a>의 <strong>sigfig</strong> 옵션은 사실 소수점에 해당하는 옵션이 아닙니다.
+유효숫자에 대한 옵션이죠.
+유효숫자는 또 큰 주제니까 다음에 다루기로 하구요.</p>
+<p>pillar에서는 <a href="https://pillar.r-lib.org/reference/pillar-package.html#package-options">출력에 대한 옵션</a>을 제공하고 있습니다.</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/44440124-c419bf80-a601-11e8-8fa4-120924950638.png"></p>
+<p>한번 읽어보시면 취향껏 고치는데 도움이 되지 않을까요?ㅎㅎ</p>
+<p>감사합니다.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/tbl/">tbl</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/tibble/">tibble</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/digit/">digit</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/options/">options</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/tidytext-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-tidy-%ED%95%98%EA%B2%8C-%EB%8B%A4%EB%A4%84%EB%B3%B4%EC%9E%90/" data-tooltip="[tidytext] 텍스트 데이터를 tidy 하게 다뤄보자">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/%EC%97%85%EB%AC%B4%EC%9E%90%EB%8F%99%ED%99%94-r%EB%A1%9C-%EC%9D%B4%EB%A9%94%EC%9D%BC%EC%9D%84-%EB%B3%B4%EB%82%B4%EB%A0%A4%EB%A9%B4-sendgridr/" data-tooltip="[업무자동화] R로 이메일을 보내려면 sendgridr">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://mrchypark.github.io/post/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://mrchypark.github.io/post/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/mrchypark">mrchypark</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/tidytext-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-tidy-%ED%95%98%EA%B2%8C-%EB%8B%A4%EB%A4%84%EB%B3%B4%EC%9E%90/" data-tooltip="[tidytext] 텍스트 데이터를 tidy 하게 다뤄보자">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/%EC%97%85%EB%AC%B4%EC%9E%90%EB%8F%99%ED%99%94-r%EB%A1%9C-%EC%9D%B4%EB%A9%94%EC%9D%BC%EC%9D%84-%EB%B3%B4%EB%82%B4%EB%A0%A4%EB%A9%B4-sendgridr/" data-tooltip="[업무자동화] R로 이메일을 보내려면 sendgridr">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://mrchypark.github.io/post/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://mrchypark.github.io/post/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmrchypark.github.io%2Fpost%2Frtips-tbl-%25EC%259E%2590%25EB%25A3%258C%25ED%2598%2595%25EC%2597%2590%25EC%2584%259C-%25EC%2586%258C%25EC%2588%2598%25EC%25A0%2590%25EC%259D%2584-%25EC%25B6%259C%25EB%25A0%25A5%25ED%2595%25B4%25EB%25B3%25B4%25EC%259E%2590%2F">
+          <i class="fa fa-facebook-official"></i><span>%!(EXTRA string=Facebook)</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fmrchypark.github.io%2Fpost%2Frtips-tbl-%25EC%259E%2590%25EB%25A3%258C%25ED%2598%2595%25EC%2597%2590%25EC%2584%259C-%25EC%2586%258C%25EC%2588%2598%25EC%25A0%2590%25EC%259D%2584-%25EC%25B6%259C%25EB%25A0%25A5%25ED%2595%25B4%25EB%25B3%25B4%25EC%259E%2590%2F">
+          <i class="fa fa-twitter"></i><span>%!(EXTRA string=Twitter)</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=110" alt="" />
+    
+    <h4 id="about-card-name">박찬엽</h4>
+    
+      <div id="about-card-bio">Tool maker with R - Docker lover</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Devops Engineer at SKT
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Seoul, Korea
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://mrchypark.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://mrchypark.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/mrchypark.github.io\/post\/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90\/';
+          
+            this.page.identifier = '\/post\/rtips-tbl-%EC%9E%90%EB%A3%8C%ED%98%95%EC%97%90%EC%84%9C-%EC%86%8C%EC%88%98%EC%A0%90%EC%9D%84-%EC%B6%9C%EB%A0%A5%ED%95%B4%EB%B3%B4%EC%9E%90\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'mrchypark';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

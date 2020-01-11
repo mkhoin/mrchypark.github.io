@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="박찬엽">
+<meta name="keywords" content="">
+<meta name="description" content="탈도 많았던 blog의 engine 이전을 완료했습니다. 사용하는 테마가 바뀌긴했지만, 그래도 지금 테마가 어느 정도 만족스러워 결정하게 되었습니다. 원래 jekyll">
+
+
+<meta property="og:description" content="탈도 많았던 blog의 engine 이전을 완료했습니다. 사용하는 테마가 바뀌긴했지만, 그래도 지금 테마가 어느 정도 만족스러워 결정하게 되었습니다. 원래 jekyll">
+<meta property="og:type" content="article">
+<meta property="og:title" content="blogdown으로 블로그 이사하기">
+<meta name="twitter:title" content="blogdown으로 블로그 이사하기">
+<meta property="og:url" content="https://mrchypark.github.io/post/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0/">
+<meta property="twitter:url" content="https://mrchypark.github.io/post/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0/">
+<meta property="og:site_name" content="Mrchypark">
+<meta property="og:description" content="탈도 많았던 blog의 engine 이전을 완료했습니다. 사용하는 테마가 바뀌긴했지만, 그래도 지금 테마가 어느 정도 만족스러워 결정하게 되었습니다. 원래 jekyll">
+<meta name="twitter:description" content="탈도 많았던 blog의 engine 이전을 완료했습니다. 사용하는 테마가 바뀌긴했지만, 그래도 지금 테마가 어느 정도 만족스러워 결정하게 되었습니다. 원래 jekyll">
+<meta property="og:locale" content="ko-kr">
+
+  
+    <meta property="article:published_time" content="2018-03-06T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-03-06T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="blog">
+    
+  
+  
+    
+      <meta property="article:tag" content="blogdown">
+    
+      <meta property="article:tag" content="hugo">
+    
+      <meta property="article:tag" content="minimal">
+    
+      <meta property="article:tag" content="rstudio">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=640">
+
+
+    <title>blogdown으로 블로그 이사하기</title>
+
+    <link rel="icon" href="css/images/logo.png">
+    
+
+    
+
+    <link rel="canonical" href="https://mrchypark.github.io/post/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://mrchypark.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://mrchypark.github.io/css/my.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-47822682-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://mrchypark.github.io/">Mrchypark</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://mrchypark.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://mrchypark.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">박찬엽</h4>
+        
+          <h5 class="sidebar-profile-bio">Tool maker with R - Docker lover</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/material">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-clone"></i>
+      
+      <span class="sidebar-button-desc">Materials</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/mrchypark" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.facebook.com/mrchypark" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+      
+      <span class="sidebar-button-desc">Facebook</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/mrchypark_" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/chanyubpark/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      blogdown으로 블로그 이사하기
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-03-06T00:00:00Z">
+        
+   6, 2018
+
+      </time>
+    
+    
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://mrchypark.github.io/categories/blog">blog</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p><img src="https://user-images.githubusercontent.com/6179259/37244232-0bf40b36-24c9-11e8-8e3d-cefc4c972699.jpg" width=100%></p>
+<p>탈도 많았던 blog의 engine 이전을 완료했습니다. 사용하는 테마가 바뀌긴했지만, 그래도 지금 테마가 어느 정도 만족스러워 결정하게 되었습니다. 원래 <code>jekyll</code>로 작성한 블로그에서 <code>blogdown(Hugo)</code>으로 변경하였는데요. <a href="https://github.com/rstudio/blogdown">blogdown</a>은 rstudio의 수석 엔지니어인 <a href="https://yihui.name/en/">Yihui Xie</a>가 <a href="https://golang.org/">golang</a>으로 작성된 <code>static site generator</code> 입니다. <code>jekyll</code> 또한 같은 범주의 도구이죠.</p>
+<div id="그동안-jekyll을-사용한-이유" class="section level3">
+<h3>그동안 <code>jekyll</code>을 사용한 이유</h3>
+<p><code>jekyll</code>은 간단함, 자유로운 테마 선택, 간단함 때문에 사용했습니다.</p>
+<div id="jekyll의-간단함" class="section level4">
+<h4><code>jekyll</code>의 간단함</h4>
+<p><code>jekyll</code> 블로그는 Github 계정만 있으면 <code>아이디.github.io</code>라는 주소로 쉽게 만들 수 있습니다! <a href="https://github.com/barryclark/jekyll-now">jekyll-now</a>를 포크하고, pages 설정만 하면 끝납니다.</p>
+<p><code>jekyll</code>은 지향점이 <em>text를 블로그로 바꿔라!</em> 입니다. 덕분에 <em>매우 쉬운</em> 도구가 되었죠. <code>.md</code> 파일을 블로그 포스트에 해당하는 형태로 운영할 수 있게 해줍니다.</p>
+<p>Github는 <a href="https://www.ruby-lang.org/ko/">ruby</a>라는 언어로 개발되었다고 합니다. 공교롭게도(!) <code>jekyll</code>도 <a href="https://www.ruby-lang.org/ko/">ruby</a>로 작성되어 있죠. 그래서 Github에서 제공하는 <a href="https://pages.github.com/">pages</a>라는 서비스에서 <code>jekyll</code>를 빌드없이 바로 사용할 수 있습니다. 물론 <code>.Rmd</code>를 <code>.md</code>로 렌더링하는 과정이 필요하기 때문에 R로 블로깅할 때는 아쉬운 대목입니다.</p>
+</div>
+<div id="자유로운-테마-선택" class="section level4">
+<h4>자유로운 테마 선택</h4>
+<p><code>jekyll</code>은 <code>static site generator</code>로써 가장 유명한 도구 입니다. <a href="https://www.staticgen.com/">staticgen</a>을 확인해보면 압도적인 스타수를 확인할 수 있습니다. 다음 인기 있는 도구가 <code>Hugo</code>군요. 최근에는 <code>Gatsby</code>도 인기있다고 들었습니다.</p>
+<p>아무튼… <code>jekyll</code>이 가장 인기있고 역사도 있는 만큼 선택할 수 있는 테마의 범위가 가장 넓습니다. <a href="http://jekyllthemes.org/">jekyllthemes</a>라는 곳에서 잘 모아져 있는 테마들을 구경할 수 도 있고, 따로 만들어진 테마들을 검색해서 찾을 수도 있습니다. 저는 <a href="https://github.com/LeNPaul/Lagrange">Lagrange</a>라는 테마를 선택했었습니다. 설명이 매우 잘 되어 있고(물론 영어입니다…), 사진 첨부가 기능으로 들어가 있어서 이름만 정해주면 되었고, 결정적으로 디자인이 너무 마음에 들었습니다.</p>
+<p><img src="https://user-images.githubusercontent.com/8409329/32631384-17107870-c56e-11e7-932f-deeb7c12e4db.png" width=100%></p>
+</div>
+<div id="jekyll의-간단함-1" class="section level4">
+<h4><code>jekyll</code>의 간단함</h4>
+<p>특별히 동작과정을 이해하려는 노력을 할 것이 아니라면 공부해야 할 부분은 <code>_config.yml</code> 파일입니다.</p>
+<pre><code># Site Settings
+title:               Mrchypark
+tagline:             log for you &amp; me
+description:
+baseurl:            #&quot;/Lagrange&quot;
+url:                #&quot;https://lenpaul.github.io&quot;
+github:
+  url:               #&quot;https://lenpaul.github.io/Lagrange&quot;
+author:
+  name:              &quot;박찬엽&quot;
+  email:             &quot;mrchypark@gmail.com&quot;
+  twitter:           &quot;mrchypark_&quot;
+  instagram:         &quot;mrchypark&quot;
+  github:            &quot;mrchypark&quot;
+  facebook:          &quot;mrchypark&quot;
+  linkedin:          &quot;chanyub.park&quot;
+navigation:
+- title: Materials
+  url: /materials
+- title: Index
+  url: /index
+- title: About
+  url: /about
+
+
+paginate:            5
+disqus:              &quot;mrchy****&quot;
+ga:                  &quot;UA-478*****-**&quot;
+
+# Build settings
+markdown:            kramdown
+highlighter:         rouge
+permalink:           none
+gems:                [jekyll-paginate]
+encoding:            &quot;UTF-8&quot;</code></pre>
+<p>이건 기존의 <code>jekyll</code>로 블로그를 만들 때 사용한 <code>_config.yml</code> 파일입니다. 테마가 친절한 편이여서 여러 SNS에 대한 링크를 아이디만 넣어주면 바로 예쁘게 사용할 수 있게 설정해 줍니다. 댓글을 위한 <a href="https://disqus.com/">disqus</a>나 <a href="https://www.google.com/analytics/">GA</a> 또한 <code>ID</code>만으로 연결을 해줍니다.</p>
+</div>
+</div>
+<div id="jekyll에서-blogdown으로" class="section level3">
+<h3><code>jekyll</code>에서 <code>blogdown</code>으로</h3>
+<p>당연히도 <code>jekyll</code>은 <a href="https://mrchypark.github.io/post/rphabetic-알파베틱-제안">R파베틱(Rphabetic)</a>하지 않기 때문입니다. 물론 <code>Hugo</code>라고 R파베틱한 것은 아니지만, 패키지화되어 있다는 점이 Rstudio와의 호환성을 많이 올려줍니다.</p>
+<p><code>blogdown</code>은 <a href="https://www.staticgen.com/">staticgen</a>에서 두번째를 차지하고 있는 <code>Hugo</code>를 R 패키지화한 도구입니다. <code>Rstudio</code>의 <code>Addin</code>으로 사이트 구축, 새포스트 쓰기 등의 기능도 지원하고 <code>build_site()</code> 명령어 한방으로 <code>docs</code> 폴더에 블로그 구축을 완전히 끝내줍니다. <code>Hugo</code>가 <em>빠른</em> 블로그라는 점도 한 몫했네요.</p>
+<ol style="list-style-type: decimal">
+<li><code>blogdown</code>은 설명서가 친절하다 - <code>blogdown</code>을 만든 사람은 <code>bookdown</code>을 만든 사람이기도 합니다. 덕분에 <a href="https://bookdown.org/yihui/blogdown/">자세한 메뉴얼</a>이 온라인 책으로 준비되어 있기도 합니다.</li>
+<li>rstudio와 호환이 좋다 - 아무래도 일하는 곳에 도구를 지원하는 방식으로 패키지를 작성한 것 같습니다. Addin 기능 뿐만 아니라 Rstudio를 블로그 글쓰기 에디터로 사용하는데 부족함 없게 지원합니다. 물론 버전이 오르면서 한글 문제(정확하게는 중국어 문제)가 해결된 이유도 있습니다.</li>
+<li>빠르다 - 신기하게 <code>Hugo</code>로 넘어간 많은 분들이 <code>jekyll</code>가 느려지는 문제를 지적하였습니다. 제 블로그가 글이 많지는 않지만 미래를 대비하고자 하는 마음도 있었습니다.</li>
+</ol>
+</div>
+<div id="다시-도구-이전-신고" class="section level3">
+<h3>다시 도구 이전 신고</h3>
+<p>네, 블로그를 <code>blogdown</code>으로 이전하였습니다. 추후 시간이 되면 <code>blogdown</code>으로 블로그를 만드는 법에 대해서 포스팅하도록 하겠습니다.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/blogdown/">blogdown</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/hugo/">hugo</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/minimal/">minimal</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/rstudio/">rstudio</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/rphabetic-%EC%95%8C%ED%8C%8C%EB%B2%A0%ED%8B%B1-%EC%A0%9C%EC%95%88/" data-tooltip="Rphabetic(알파베틱) 제안">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/r%EB%A1%9C%EB%82%98%EB%A7%8C%EC%9D%98-%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/" data-tooltip="[R로나만의] 웹페이지 만들기 1탄 Rpubs">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://mrchypark.github.io/post/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://mrchypark.github.io/post/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/mrchypark">mrchypark</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/rphabetic-%EC%95%8C%ED%8C%8C%EB%B2%A0%ED%8B%B1-%EC%A0%9C%EC%95%88/" data-tooltip="Rphabetic(알파베틱) 제안">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/r%EB%A1%9C%EB%82%98%EB%A7%8C%EC%9D%98-%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0/" data-tooltip="[R로나만의] 웹페이지 만들기 1탄 Rpubs">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://mrchypark.github.io/post/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://mrchypark.github.io/post/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmrchypark.github.io%2Fpost%2Fblogdown%25EC%259C%25BC%25EB%25A1%259C-%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8-%25EC%259D%25B4%25EC%2582%25AC%25ED%2595%2598%25EA%25B8%25B0%2F">
+          <i class="fa fa-facebook-official"></i><span>%!(EXTRA string=Facebook)</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fmrchypark.github.io%2Fpost%2Fblogdown%25EC%259C%25BC%25EB%25A1%259C-%25EB%25B8%2594%25EB%25A1%259C%25EA%25B7%25B8-%25EC%259D%25B4%25EC%2582%25AC%25ED%2595%2598%25EA%25B8%25B0%2F">
+          <i class="fa fa-twitter"></i><span>%!(EXTRA string=Twitter)</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=110" alt="" />
+    
+    <h4 id="about-card-name">박찬엽</h4>
+    
+      <div id="about-card-bio">Tool maker with R - Docker lover</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Devops Engineer at SKT
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Seoul, Korea
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://mrchypark.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://mrchypark.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/mrchypark.github.io\/post\/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0\/';
+          
+            this.page.identifier = '\/post\/blogdown%EC%9C%BC%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%9D%B4%EC%82%AC%ED%95%98%EA%B8%B0\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'mrchypark';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

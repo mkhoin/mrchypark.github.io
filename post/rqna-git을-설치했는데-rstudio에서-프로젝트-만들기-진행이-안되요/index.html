@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="박찬엽">
+<meta name="keywords" content="">
+<meta name="description" content="본 포스트는 windows 사용자 중 git 설치에 어려움이 있는 분들을 대상으로 합니다. 한줄요약 Git을 설치했는데도 안되면 Rstudio의 Tools &gt; Global Options… &gt; Gi">
+
+
+<meta property="og:description" content="본 포스트는 windows 사용자 중 git 설치에 어려움이 있는 분들을 대상으로 합니다. 한줄요약 Git을 설치했는데도 안되면 Rstudio의 Tools &gt; Global Options… &gt; Gi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[RQnA] git을 설치했는데 Rstudio에서 프로젝트 만들기 진행이 안되요">
+<meta name="twitter:title" content="[RQnA] git을 설치했는데 Rstudio에서 프로젝트 만들기 진행이 안되요">
+<meta property="og:url" content="https://mrchypark.github.io/post/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94/">
+<meta property="twitter:url" content="https://mrchypark.github.io/post/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94/">
+<meta property="og:site_name" content="Mrchypark">
+<meta property="og:description" content="본 포스트는 windows 사용자 중 git 설치에 어려움이 있는 분들을 대상으로 합니다. 한줄요약 Git을 설치했는데도 안되면 Rstudio의 Tools &gt; Global Options… &gt; Gi">
+<meta name="twitter:description" content="본 포스트는 windows 사용자 중 git 설치에 어려움이 있는 분들을 대상으로 합니다. 한줄요약 Git을 설치했는데도 안되면 Rstudio의 Tools &gt; Global Options… &gt; Gi">
+<meta property="og:locale" content="ko-kr">
+
+  
+    <meta property="article:published_time" content="2018-03-19T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-03-19T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R">
+    
+  
+  
+    
+      <meta property="article:tag" content="RQnA">
+    
+      <meta property="article:tag" content="git">
+    
+      <meta property="article:tag" content="github">
+    
+      <meta property="article:tag" content="project">
+    
+      <meta property="article:tag" content="rstudio">
+    
+      <meta property="article:tag" content="setting">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=640">
+
+
+    <title>[RQnA] git을 설치했는데 Rstudio에서 프로젝트 만들기 진행이 안되요</title>
+
+    <link rel="icon" href="css/images/logo.png">
+    
+
+    
+
+    <link rel="canonical" href="https://mrchypark.github.io/post/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://mrchypark.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://mrchypark.github.io/css/my.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-47822682-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://mrchypark.github.io/">Mrchypark</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://mrchypark.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://mrchypark.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">박찬엽</h4>
+        
+          <h5 class="sidebar-profile-bio">Tool maker with R - Docker lover</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/material">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-clone"></i>
+      
+      <span class="sidebar-button-desc">Materials</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/mrchypark" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.facebook.com/mrchypark" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+      
+      <span class="sidebar-button-desc">Facebook</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/mrchypark_" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/chanyubpark/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      [RQnA] git을 설치했는데 Rstudio에서 프로젝트 만들기 진행이 안되요
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-03-19T00:00:00Z">
+        
+   19, 2018
+
+      </time>
+    
+    
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://mrchypark.github.io/categories/r">R</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37573384-9a172636-2b5a-11e8-950a-9d63cca29ca6.jpg"></p>
+<div id="본-포스트는-windows-사용자-중-git-설치에-어려움이-있는-분들을-대상으로-합니다." class="section level2">
+<h2>본 포스트는 windows 사용자 중 git 설치에 어려움이 있는 분들을 대상으로 합니다.</h2>
+<div id="한줄요약" class="section level3">
+<h3>한줄요약</h3>
+<ol style="list-style-type: decimal">
+<li>Git을 설치했는데도 안되면 Rstudio의 Tools &gt; Global Options… &gt; Git/SVN의 경로를 확인해라.</li>
+</ol>
+<p><a href="https://mrchypark.github.io/post/github-rstudio%EB%A1%9C-github-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/">지난 포스트</a>를 작성할 때 간단하게 넘어간 부분에 질문이 있어서 A/S 느낌으로 급하게 포스트를 작성합니다.
+Rstudio에 github을 연결해 사용하기 위해서는 git을 설치해야 합니다.
+<a href="https://mrchypark.github.io/post/github-rstudio%EB%A1%9C-github-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/">지난 포스트</a>에서는 다른 블로그의 <a href="http://library1008.tistory.com/51">포스트</a>를 소개해드렸습니다.
+상세히 설명된 포스트라 소개했는데, 아무래도 Rstudio에 대한 설정 내용이 없어서 추가합니다.</p>
+</div>
+<div id="git이-없습니다-팝업" class="section level3">
+<h3>git이 없습니다 팝업</h3>
+<p>우선 프로젝트를 만드는 순서를 다시 따라가 볼까요?</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37447835-327a34f0-2867-11e8-8853-f6021e96b5bc.png"></p>
+<p>새 프로젝트를 만들기 위해 시작하면,</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37447843-408c984e-2867-11e8-891a-1b9003cafb03.png"></p>
+<p>Version Control을 선택해서 진행했습니다.</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37447856-4eaeac78-2867-11e8-83b7-f4e0e643723d.png"></p>
+<p>이제 이 화면입니다.
+Git과 Subversion을 선택하는 부분에서 Git을 설치하지 않고 Git을 선택하면 아래와 같은 화면이 나옵니다.</p>
+<figure>
+<img src="https://user-images.githubusercontent.com/6179259/37574691-143f54dc-2b66-11e8-88e1-042c0112500d.jpg">
+<figcaption>
+캡쳐 협찬해주신 <a href="https://www.facebook.com/photo.php?fbid=1818238271572240&amp;set=p.1818238271572240&amp;type=3&amp;theater">이부일</a>님 감사합니다.
+</figcaption>
+</figure>
+<p>보통은 위의 <a href="http://library1008.tistory.com/51">포스트</a>를 따라 설치하시고, 다시 위 프로젝트를 만드는 과정을 진행하면 다음 화면으로 잘 넘어갑니다.</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37447859-545ad188-2867-11e8-9d13-f2f101a3986c.png"></p>
+<p>이게 다음화면 인데요.
+잘 안되셔서 재시작도 해봤는데, 여전히 진행이 안되는 문제가 있었습니다.
+그러면 Rstudio의 설정을 확인하여 해결할 수 있습니다.</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37573235-fc190e14-2b58-11e8-8be9-c9eab7d54c1b.png"></p>
+<p>Tools &gt; Global Options… 를 찾아 클릭합니다.</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37573239-026cb112-2b59-11e8-8735-d3ed88582d1c.png"></p>
+<p>옵션화면입니다. 아래에서 세번째에 Git/SVN 탭을 클릭합니다.</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37573240-07c30e68-2b59-11e8-8fe2-3f7c346ac438.png"></p>
+<p><code>Git executable:</code> 이라고 되어있는 부분을 한 번 볼까요?
+제 컴퓨터에 설치된 Git은 <code>C:/Program Files/Git/bin/git.exe</code>에 위치하고 있고, 그걸 사용한다고 Rstudio에 설정되어 있네요.
+설치를 했는데도 진행이 안되시는 분들은 이 곳의 경로를 확인해보시면 좋을 것 같습니다.</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37573366-72704f90-2b5a-11e8-9ea0-38291c7be2cd.png"></p>
+<p>아마도 이렇게 되어 있을 것 같습니다.</p>
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/37573240-07c30e68-2b59-11e8-8fe2-3f7c346ac438.png"></p>
+<p>다른 설정 변경 없이 Git을 설치하셨다면 저와 같은 경로를 설정해주시면 됩니다.
+혹시 모르니 탐색기에서 경로에 파일이 있는지 확인해주세요!</p>
+<p>경로를 수정해도 진행이 안되시는 분들은 댓글로 알려주세요. 감사합니다!</p>
+</div>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/rqna/">RQnA</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/git/">git</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/github/">github</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/project/">project</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/rstudio/">rstudio</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/setting/">setting</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/github-rstudio%EB%A1%9C-github-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/" data-tooltip="[github] rstudio로 github 프로젝트 시작하기">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/r%EB%A1%9C%EB%82%98%EB%A7%8C%EC%9D%98-%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0-2%ED%83%84-github-pages/" data-tooltip="[R로나만의] 웹페이지 만들기 2탄 Github pages">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://mrchypark.github.io/post/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://mrchypark.github.io/post/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/mrchypark">mrchypark</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/github-rstudio%EB%A1%9C-github-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/" data-tooltip="[github] rstudio로 github 프로젝트 시작하기">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/r%EB%A1%9C%EB%82%98%EB%A7%8C%EC%9D%98-%EC%9B%B9%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0-2%ED%83%84-github-pages/" data-tooltip="[R로나만의] 웹페이지 만들기 2탄 Github pages">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://mrchypark.github.io/post/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://mrchypark.github.io/post/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmrchypark.github.io%2Fpost%2Frqna-git%25EC%259D%2584-%25EC%2584%25A4%25EC%25B9%2598%25ED%2596%2588%25EB%258A%2594%25EB%258D%25B0-rstudio%25EC%2597%2590%25EC%2584%259C-%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8-%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0-%25EC%25A7%2584%25ED%2596%2589%25EC%259D%25B4-%25EC%2595%2588%25EB%2590%2598%25EC%259A%2594%2F">
+          <i class="fa fa-facebook-official"></i><span>%!(EXTRA string=Facebook)</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fmrchypark.github.io%2Fpost%2Frqna-git%25EC%259D%2584-%25EC%2584%25A4%25EC%25B9%2598%25ED%2596%2588%25EB%258A%2594%25EB%258D%25B0-rstudio%25EC%2597%2590%25EC%2584%259C-%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8-%25EB%25A7%258C%25EB%2593%25A4%25EA%25B8%25B0-%25EC%25A7%2584%25ED%2596%2589%25EC%259D%25B4-%25EC%2595%2588%25EB%2590%2598%25EC%259A%2594%2F">
+          <i class="fa fa-twitter"></i><span>%!(EXTRA string=Twitter)</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=110" alt="" />
+    
+    <h4 id="about-card-name">박찬엽</h4>
+    
+      <div id="about-card-bio">Tool maker with R - Docker lover</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Devops Engineer at SKT
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Seoul, Korea
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://mrchypark.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://mrchypark.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/mrchypark.github.io\/post\/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94\/';
+          
+            this.page.identifier = '\/post\/rqna-git%EC%9D%84-%EC%84%A4%EC%B9%98%ED%96%88%EB%8A%94%EB%8D%B0-rstudio%EC%97%90%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-%EC%A7%84%ED%96%89%EC%9D%B4-%EC%95%88%EB%90%98%EC%9A%94\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'mrchypark';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

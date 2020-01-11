@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.57.2 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="박찬엽">
+<meta name="keywords" content="">
+<meta name="description" content="한줄요약 multilinguer::install_java()를 쓰세요.(MacOS는 컴퓨터 비밀번호가 필요) 앞서 R에서 python을 설치해">
+
+
+<meta property="og:description" content="한줄요약 multilinguer::install_java()를 쓰세요.(MacOS는 컴퓨터 비밀번호가 필요) 앞서 R에서 python을 설치해">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[correttor] R을 위해서 JAVA를 설치해보자">
+<meta name="twitter:title" content="[correttor] R을 위해서 JAVA를 설치해보자">
+<meta property="og:url" content="https://mrchypark.github.io/post/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/">
+<meta property="twitter:url" content="https://mrchypark.github.io/post/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/">
+<meta property="og:site_name" content="Mrchypark">
+<meta property="og:description" content="한줄요약 multilinguer::install_java()를 쓰세요.(MacOS는 컴퓨터 비밀번호가 필요) 앞서 R에서 python을 설치해">
+<meta name="twitter:description" content="한줄요약 multilinguer::install_java()를 쓰세요.(MacOS는 컴퓨터 비밀번호가 필요) 앞서 R에서 python을 설치해">
+<meta property="og:locale" content="ko-kr">
+
+  
+    <meta property="article:published_time" content="2019-08-10T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-08-10T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R">
+    
+  
+  
+    
+      <meta property="article:tag" content="java">
+    
+      <meta property="article:tag" content="rJava">
+    
+      <meta property="article:tag" content="package">
+    
+      <meta property="article:tag" content="correttor">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=640">
+
+
+    <title>[correttor] R을 위해서 JAVA를 설치해보자</title>
+
+    <link rel="icon" href="css/images/logo.png">
+    
+
+    
+
+    <link rel="canonical" href="https://mrchypark.github.io/post/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://mrchypark.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://mrchypark.github.io/css/my.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-47822682-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://mrchypark.github.io/">Mrchypark</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://mrchypark.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=90" alt="" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://mrchypark.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=110" alt="" />
+        </a>
+        <h4 class="sidebar-profile-name">박찬엽</h4>
+        
+          <h5 class="sidebar-profile-bio">Tool maker with R - Docker lover</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/material">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-clone"></i>
+      
+      <span class="sidebar-button-desc">Materials</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/mrchypark" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.facebook.com/mrchypark" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+      
+      <span class="sidebar-button-desc">Facebook</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://twitter.com/mrchypark_" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/chanyubpark/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://mrchypark.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      [correttor] R을 위해서 JAVA를 설치해보자
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-08-10T00:00:00Z">
+        
+   10, 2019
+
+      </time>
+    
+    
+  
+  
+    <span></span>
+    
+      <a class="category-link" href="https://mrchypark.github.io/categories/r">R</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p><img width=100% src="https://user-images.githubusercontent.com/6179259/62805456-01d16a00-bb2b-11e9-8715-86351f3ad9ab.jpeg"></p>
+<div id="한줄요약" class="section level3">
+<h3>한줄요약</h3>
+<ol style="list-style-type: decimal">
+<li><code>multilinguer::install_java()</code>를 쓰세요.(MacOS는 컴퓨터 비밀번호가 필요)</li>
+</ol>
+<p>앞서 R에서 <code>python</code>을 설치해서 사용하기 위해 <code>conda</code>를 설치하는 방법을 살펴봤습니다.
+이번에는 <code>java</code>입니다.(두둥)(엄근진)</p>
+<p><del><code>java</code>를 설치하기 위해서 <a href="https://aws.amazon.com/ko/corretto/">corretto</a> 배포판을 선택했습니다.
+<a href="https://aws.amazon.com/ko/corretto/">corretto</a> 배포판의 설치를 지원하는 <a href="https://mrchypark.github.io/correttor/">correttor</a> 패키지는 Windows 32 bit, 64 bit, MacOS를 지원합니다.</del></p>
+<p><del><a href="https://mrchypark.github.io/conda4r/">conda4r</a> 패키지와 마찬가지로 <a href="https://mrchypark.github.io/correttor/">correttor</a> 패키지는 <a href="https://github.com/mrchypark/multilinguer">multilinguer</a> 패키지군의 일원입니다.</del></p>
+<p><a href="https://github.com/mrchypark/multilinguer">multilinguer</a> 패키지가 직접 인스톨 코드 등을 가지도록 개발하고 있습니다.</p>
+<p>이 포스트는 두말 않고 진행해보겠습니다.</p>
+<pre class="r"><code># install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;mrchypark/multilinguer&quot;)
+library(multilinguer)
+install_java()</code></pre>
+<p><code>install_java()</code> 함수의 목표는 <a href="https://github.com/s-u/rJava">rJava</a>를 설치하여 문제 없이 동작하게 만드는 것입니다.
+<code>install_java()</code> 함수는 현재 컴퓨터에 <code>java</code>가 설치되어 있는지 확인합니다.
+없다면 설치를 시작합니다.
+Windows 에서는 사용자 계정 별 폴더에 <code>corretto</code> 폴더를 만들고 저장합니다.
+그리고 유저 환경변수를 설정합니다.
+MacOS 에서는 <code>/Library/Java/JavaVirtualMachines/</code> 경로에 <code>java11</code> 버전으로 명시하여 저장합니다.
+말씀 드린 것 처럼, MacOS는 앞의 위치에 설치하기 위해서 컴퓨터 비밀번호가 필요합니다.
+문제있는 동작은 없으니 걱정되시면 <a href="https://github.com/mrchypark/multilinguer/blob/master/R/uncompress_java.R">소스</a>를 확인해 주세요.</p>
+<p>앞의 설치는 마지막에 재시작을 하고 <a href="https://github.com/s-u/rJava">rJava</a> 패키지를 <code>binary</code>로 설치한 후 다시 재시작합니다.
+<code>.jinit()</code> 함수를 수행하면서 마무리를 하기 때문에 문제가 있다면 이 단계에서 에러를 출력합니다.
+혹시 에러가 발생하면 꼭 알려주세요.</p>
+<p>위 설치로 바로 사용해 볼 수 있는 패키지는 역시 <a href="https://github.com/haven-jeon/KoNLP">KoNLP</a> 입니다.</p>
+<pre class="r"><code>install.packages(&quot;KoNLP&quot;)
+library(KoNLP)</code></pre>
+<pre><code>## Checking user defined dictionary!</code></pre>
+<p>위 메세지가 실행된다면, 자바를 사용하는 R 패키지를 문제없이 사용할 수 있는 상태가 되었다는 뜻입니다.</p>
+<p>현재 MacOS에서 R 버전이 3.5.X 버전일 때 문제가 있는 것을 파악했습니다.</p>
+<p><a href="https://mrchypark.github.io/correttor/">correttor</a> 패키지 개발에 도움을 주신 많은 분들께 다시 한번 감사드립니다.
+빨리 여러 곳에서 안정적으로 동작하는 패키지가 되도록 노력하겠습니다.
+감사합니다.</p>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small"></span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/java/">java</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/rjava/">rJava</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/package/">package</a>
+
+  <a class="tag tag--primary tag--small" href="https://mrchypark.github.io/tags/correttor/">correttor</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/conda4r-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-conda%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/" data-tooltip="[conda4r] R을 위해서 conda를 설치해보자">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/rtips-%EB%B6%88%EB%A6%AC%EB%8A%94-%ED%8C%A8%ED%82%A4%EC%A7%80%EA%B0%80-%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95/" data-tooltip="[Rtips] 불리는 패키지가 없습니다 해결 방법">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://mrchypark.github.io/post/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://mrchypark.github.io/post/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/mrchypark">mrchypark</a>. 
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/conda4r-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-conda%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/" data-tooltip="[conda4r] R을 위해서 conda를 설치해보자">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml"></span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://mrchypark.github.io/post/rtips-%EB%B6%88%EB%A6%AC%EB%8A%94-%ED%8C%A8%ED%82%A4%EC%A7%80%EA%B0%80-%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95/" data-tooltip="[Rtips] 불리는 패키지가 없습니다 해결 방법">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr"></span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://mrchypark.github.io/post/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://mrchypark.github.io/post/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmrchypark.github.io%2Fpost%2Fcorrettor-r%25EC%259D%2584-%25EC%259C%2584%25ED%2595%25B4%25EC%2584%259C-java%25EB%25A5%25BC-%25EC%2584%25A4%25EC%25B9%2598%25ED%2595%25B4%25EB%25B3%25B4%25EC%259E%2590%2F">
+          <i class="fa fa-facebook-official"></i><span>%!(EXTRA string=Facebook)</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fmrchypark.github.io%2Fpost%2Fcorrettor-r%25EC%259D%2584-%25EC%259C%2584%25ED%2595%25B4%25EC%2584%259C-java%25EB%25A5%25BC-%25EC%2584%25A4%25EC%25B9%2598%25ED%2595%25B4%25EB%25B3%25B4%25EC%259E%2590%2F">
+          <i class="fa fa-twitter"></i><span>%!(EXTRA string=Twitter)</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/c7d1d953020cc69b1b08134f3e4d33cf?s=110" alt="" />
+    
+    <h4 id="about-card-name">박찬엽</h4>
+    
+      <div id="about-card-bio">Tool maker with R - Docker lover</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Devops Engineer at SKT
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Seoul, Korea
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://mrchypark.github.io/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://mrchypark.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/mrchypark.github.io\/post\/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90\/';
+          
+            this.page.identifier = '\/post\/correttor-r%EC%9D%84-%EC%9C%84%ED%95%B4%EC%84%9C-java%EB%A5%BC-%EC%84%A4%EC%B9%98%ED%95%B4%EB%B3%B4%EC%9E%90\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'mrchypark';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
